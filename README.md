@@ -1,11 +1,13 @@
-[![Build Status](https://cloud.drone.io/api/badges/UtsavBalar1231/kernel_xiaomi_sm8250/status.svg?ref=refs/heads/android12-stable)](https://cloud.drone.io/UtsavBalar1231/kernel_xiaomi_sm8250)
-![Commits Count](https://img.shields.io/github/commits-since/UtsavBalar1231/kernel_xiaomi_sm8250/6.0.0/android12-stable)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FUtsavBalar1231%2Fkernel_xiaomi_sm8250&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-![Downloads](https://img.shields.io/github/downloads/UtsavBalar1231/kernel_xiaomi_sm8250/7.1.0/total)
+## 项目简介
+- LXC+KernelSU的K30Pro Android14内核源码
+- 本内核仅在crdroid_10.1 Android14上测试过，其他版本未测试
+- 我使用的Toolchain 来自 [这个链接](https://www.coolapk.com/feed/50019057?shareKey=N2UwZTA2MDhkNDcyNjVjNzllY2U~&shareUid=1302037&shareFrom=com.coolapk.market_14.0.1) 中的Docker镜像里.
+- 由于我不懂一点C语言，所以这个项目别人编译起来可能会有些问题,比如 `make clean && make mrproper` 会清理掉`drivers/input/touchscreen`目录下的某些文件，导致编译失败，所以建议编译前先备份一下`drivers/input/touchscreen`目录下的文件
 
-![logo](https://github.com/UtsavBalar1231/xda-stuff/raw/master/banner.png "logo was here")
 
-## Technical Information
-- [XDA Thread](https://utsavbalar.netlify.app/community/#xda)
-- [Telegram Support](https://utsavbalar.netlify.app/community/#telegram-groups)
-- [Donate](https://utsavbalar.netlify.app/donate)
+### AI立大功
+- 90%的bug由AI修复,这个README.md也有一半是AI写的.
+- 如果你提交了一个issue，也许AI会帮你修复...
+
+##### 免责声明：
+- 如果你的设备变砖了，我不负任何责任
