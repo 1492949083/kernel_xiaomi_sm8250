@@ -63,6 +63,34 @@ mkdir -p out
 
 ls drivers/input/touchscreen/focaltech_touch/include/pramboot/
 
+# echo "         "
+# echo "#添加LXC配置,到内核"
+# echo "         "
+
+# echo "CONFIG_DOCKER=y" >> "$GKI_ROOT/arch/arm64/configs/${KERNEL_DEFCONFIG}"
+
+# sed -i '/CONFIG_ANDROID_PARANOID_NETWORK/d' "$GKI_ROOT/arch/arm64/configs/${KERNEL_DEFCONFIG}"
+
+# echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> "$GKI_ROOT/arch/arm64/configs/${KERNEL_DEFCONFIG}"
+
+# sed -i '/CONFIG_LOCALVERSION/d' "$GKI_ROOT/arch/arm64/configs/${KERNEL_DEFCONFIG}"
+
+# echo "         "
+# echo "         "
+# echo "#添加LXC,到内核树,并运用补丁"
+# echo "         "
+# echo "         "
+# DRIVER_KCONFIG=$GKI_ROOT/Kconfig
+# cp /home/ccc007/Toolchain/utils $GKI_ROOT/ -R
+
+# echo 'source "utils/Kconfig"' >> "$GKI_ROOT/Kconfig"
+
+# sh $GKI_ROOT/utils/runcpatch.sh $GKI_ROOT/kernel/cgroup/cgroup.c
+
+
+# if [ -f $GKI_ROOT/net/netfilter/xt_qtaguid.c ]; then
+#        patch -p0 < $GKI_ROOT/utils/xt_qtaguid.patch
+# fi
 
 
 
