@@ -16,7 +16,7 @@ export KERNEL_DEFCONFIG=lmi_defconfig
 #KERNEL_DEFCONFIG=vendor/xxxx_defconfig或KERNEL_DEFCONFIG=xxxx_defconfig                                                                           
 
  #机型
-export NAME=K30 Pro
+export NAME=K30Pro
 #export LOCALVERSION="-LXC-KSU_support_by_Pdx"
 
 #内核产品的格式类型通常为Image或 Image.gz.dtb，Image.gz等，默认Image
@@ -27,15 +27,15 @@ export KERNEL=Image
 export GKI_ROOT=$(pwd)
 export ARCH=arm64
 export SUBARCH=arm64
-#export PATH="/root/Toolchain/clang-r450784e/bin:/root/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/root/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
+#export PATH="/home/ccc007/Toolchain/clang-r450784e/bin:/home/ccc007/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/home/ccc007/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
 
-export PATH="/root/Toolchain/platform_prebuilts_clang_kernel_linux-x86_clang-r416183b-android13/bin:/root/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/root/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
+export PATH="/home/ccc007/Toolchain/platform_prebuilts_clang_kernel_linux-x86_clang-r416183b-android13/bin:/home/ccc007/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/home/ccc007/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
 
-#export PATH="/root/Toolchain/google_clang/clang-r383902b-11.0.2/bin:/root/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/root/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
+#export PATH="/home/ccc007/Toolchain/google_clang/clang-r383902b-11.0.2/bin:/home/ccc007/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/home/ccc007/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
 
-#export PATH="/root/Toolchain/llvm-arm-toolchain-ship-10.0/bin:/root/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/root/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
+#export PATH="/home/ccc007/Toolchain/llvm-arm-toolchain-ship-10.0/bin:/home/ccc007/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/home/ccc007/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
 
-#export PATH="/root/Toolchain/sdclang-8.0.6/bin:/root/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/root/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
+#export PATH="/home/ccc007/Toolchain/sdclang-8.0.6/bin:/home/ccc007/Toolchain/google_gcc/aarch64-linux-android-4.9/bin:/home/ccc007/Toolchain/google_gcc/arm-linux-androideabi-4.9/bin:$PATH"
 
 
 args="-j$(nproc --all) \
@@ -53,10 +53,13 @@ CLANG_TRIPLE=aarch64-linux-gnu- "
 echo "        "
 echo "环境清理"
 echo "        "
-make clean && make mrproper
+make clean && make mrproper && cp -r /home/ccc007/git/xiaomi_sm8250/touchscreen/* drivers/input/touchscreen
+
+# make ARCH=arm64 lmi_defconfig
+# make menuconfig
+
 #rm -rf $GKI_ROOT/KernelSU $GKI_ROOT/out $GKI_ROOT/kernel.log $GKI_ROOT/drivers/kernelsu
 mkdir -p out
-cp -r /root/git/kernel_xiaomi_sm8250/drivers/input/touchscreen/* drivers/input/touchscreen
 
 ls drivers/input/touchscreen/focaltech_touch/include/pramboot/
 
@@ -106,10 +109,10 @@ make -j16 ${args} 2>&1 | tee kernel.log
 # 打包内核，用AnyKernel3进行打包,最终内核成品在 /mnt目录下
 if [ -f $GKI_ROOT/out/arch/${ARCH}/boot/${KERNEL} ]
 	then
-		cp -rf $GKI_ROOT/out/arch/${ARCH}/boot/${KERNEL} /root/Toolchain/AnyKernel3 ;
+		cp -rf $GKI_ROOT/out/arch/${ARCH}/boot/${KERNEL} /home/ccc007/Toolchain/AnyKernel3 ;
 
-                cp -rf $GKI_ROOT/out/arch/${ARCH}/boot/dtbo.img /root/Toolchain/AnyKernel3 ;
-		cd /root/Toolchain/AnyKernel3 ;
+                cp -rf $GKI_ROOT/out/arch/${ARCH}/boot/dtbo.img /home/ccc007/Toolchain/AnyKernel3 ;
+		cd /home/ccc007/Toolchain/AnyKernel3 ;
 		zip -r kernel-KernelSU-LXC-${NAME}_`date '+%Y%m%d%H%M'`.zip  . ;
 		mv *.zip /mnt ;
 		rm ${KERNEL} dtbo.img ;
